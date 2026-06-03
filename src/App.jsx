@@ -229,12 +229,12 @@ const QUIZ_DATA = {
 
 // ── Curated medical YouTube video IDs ────────────────────────────────────────
 const VIDEOS = [
-  { id: "VEFYV0IXHF8", title: "How the Heart Works", channel: "Osmosis from Elsevier", topic: "Cardiology" },
-  { id: "q7T0ytDMGSo", title: "Sepsis: Pathophysiology & Management", channel: "Ninja Nerd", topic: "Emergency" },
-  { id: "8LpnLkTdgF0", title: "Diabetes Mellitus Type 1 & 2", channel: "Osmosis from Elsevier", topic: "Endocrinology" },
-  { id: "l-DPJM8ap1I", title: "Acute Kidney Injury (AKI)", channel: "Ninja Nerd", topic: "Nephrology" },
-  { id: "OhJKm9uOwbE", title: "Pneumonia: Causes, Diagnosis & Treatment", channel: "Osmosis from Elsevier", topic: "Respiratory" },
-  { id: "G9bSNc3V-to", title: "Stroke — Ischaemic & Haemorrhagic", channel: "Osmosis from Elsevier", topic: "Neurology" },
+  { id: "Gsu8NT1yYes", title: "Congestive Heart Failure", channel: "Ninja Nerd", topic: "Cardiology" },
+  { id: "8Yv3VfAS9sU", title: "Pathophysiology of Septic Shock", channel: "Ninja Nerd", topic: "Emergency" },
+  { id: "rh8ycjPCj18", title: "Diabetes Mellitus", channel: "Ninja Nerd", topic: "Endocrinology" },
+  { id: "EgGOwekD1O8", title: "Acute Kidney Injury (AKI)", channel: "Ninja Nerd", topic: "Nephrology" },
+  { id: "lzyUVVOqyS0", title: "Pneumonia Overview", channel: "Ninja Nerd", topic: "Respiratory" },
+  { id: "7lpqxDEfszY", title: "Ischaemic & Haemorrhagic Strokes", channel: "Ninja Nerd", topic: "Neurology" },
 ];
 
 function useInView(threshold = 0.12) {
