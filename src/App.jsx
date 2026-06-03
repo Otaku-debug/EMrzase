@@ -396,7 +396,7 @@ export default function EMrzaseHopeLtd() {
   const [scrolled, setScrolled] = useState(false);
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
-  const [activeVideo, setActiveVideo] = useState(null);
+  const openVideo = (id) => window.open(`https://www.youtube.com/watch?v=${id}`, "_blank");
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 60);
@@ -635,21 +635,6 @@ export default function EMrzaseHopeLtd() {
           </div>
         </FadeIn>
 
-        {activeVideo && (
-          <div style={{ maxWidth: "860px", margin: "0 auto 48px" }}>
-            <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, background: "#000" }}>
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${activeVideo}?autoplay=1&rel=0`}
-                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Medical education video"
-              />
-            </div>
-            <button onClick={() => setActiveVideo(null)} className="sans" style={{ marginTop: "12px", background: "none", border: "1px solid rgba(245,240,235,0.2)", color: "rgba(245,240,235,0.5)", padding: "8px 20px", cursor: "pointer", fontSize: "12px", letterSpacing: "0.1em" }}>✕ Close Video</button>
-          </div>
-        )}
-
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }} className="grid3">
           {VIDEOS.map((v, i) => {
             const TOPIC_COLORS = { Cardiology: "#ff6b6b", Emergency: "#ff4a4a", Endocrinology: "#4a9eff", Nephrology: "#4ac97e", Respiratory: "#a78bfa", Neurology: "#fbbf24" };
@@ -657,7 +642,7 @@ export default function EMrzaseHopeLtd() {
             return (
               <FadeIn key={v.id} delay={i * 60}>
                 <div
-                  onClick={() => setActiveVideo(v.id)}
+                  onClick={() => openVideo(v.id)}
                   style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(245,240,235,0.08)", padding: "32px 28px", cursor: "pointer", transition: "all 0.3s", position: "relative", overflow: "hidden" }}
                   onMouseEnter={e => { e.currentTarget.style.border = `1px solid ${tc}50`; e.currentTarget.style.background = `${tc}08`; }}
                   onMouseLeave={e => { e.currentTarget.style.border = "1px solid rgba(245,240,235,0.08)"; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
