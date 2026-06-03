@@ -637,29 +637,42 @@ export default function EMrzaseHopeLtd() {
 
         {activeVideo && (
           <div style={{ maxWidth: "860px", margin: "0 auto 48px" }}>
-            <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
-              <iframe src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1`} style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }} allow="autoplay; fullscreen" allowFullScreen title="Medical video" />
+            <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, background: "#000" }}>
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${activeVideo}?autoplay=1&rel=0`}
+                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Medical education video"
+              />
             </div>
             <button onClick={() => setActiveVideo(null)} className="sans" style={{ marginTop: "12px", background: "none", border: "1px solid rgba(245,240,235,0.2)", color: "rgba(245,240,235,0.5)", padding: "8px 20px", cursor: "pointer", fontSize: "12px", letterSpacing: "0.1em" }}>✕ Close Video</button>
           </div>
         )}
 
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }} className="grid3">
-          {VIDEOS.map((v, i) => (
-            <FadeIn key={v.id} delay={i * 60}>
-              <div className="vid-card" onClick={() => setActiveVideo(v.id)}>
-                <img src={`https://img.youtube.com/vi/${v.id}/hqdefault.jpg`} alt={v.title} />
-                <div className="vid-play">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#0a0a0a"><polygon points="5,3 19,12 5,21" /></svg>
+          {VIDEOS.map((v, i) => {
+            const TOPIC_COLORS = { Cardiology: "#ff6b6b", Emergency: "#ff4a4a", Endocrinology: "#4a9eff", Nephrology: "#4ac97e", Respiratory: "#a78bfa", Neurology: "#fbbf24" };
+            const tc = TOPIC_COLORS[v.topic] || "#c9a96e";
+            return (
+              <FadeIn key={v.id} delay={i * 60}>
+                <div
+                  onClick={() => setActiveVideo(v.id)}
+                  style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(245,240,235,0.08)", padding: "32px 28px", cursor: "pointer", transition: "all 0.3s", position: "relative", overflow: "hidden" }}
+                  onMouseEnter={e => { e.currentTarget.style.border = `1px solid ${tc}50`; e.currentTarget.style.background = `${tc}08`; }}
+                  onMouseLeave={e => { e.currentTarget.style.border = "1px solid rgba(245,240,235,0.08)"; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
+                >
+                  <div style={{ width: "48px", height: "48px", background: `${tc}20`, border: `1px solid ${tc}40`, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "20px" }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill={tc}><polygon points="5,3 19,12 5,21" /></svg>
+                  </div>
+                  <div className="sans" style={{ fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: tc, marginBottom: "8px" }}>{v.topic}</div>
+                  <div style={{ fontSize: "18px", fontWeight: "400", lineHeight: 1.3, marginBottom: "10px" }}>{v.title}</div>
+                  <div className="sans" style={{ fontSize: "12px", color: "rgba(245,240,235,0.4)" }}>{v.channel}</div>
+                  <div className="sans" style={{ fontSize: "11px", color: tc, marginTop: "20px", letterSpacing: "0.1em", textTransform: "uppercase" }}>Watch on YouTube ↗</div>
                 </div>
-                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "16px", background: "linear-gradient(to top, rgba(0,0,0,0.92), transparent)" }}>
-                  <div className="sans" style={{ fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#c9a96e", marginBottom: "4px" }}>{v.topic}</div>
-                  <div style={{ fontSize: "15px", fontWeight: "400", lineHeight: 1.3 }}>{v.title}</div>
-                  <div className="sans" style={{ fontSize: "11px", color: "rgba(245,240,235,0.45)", marginTop: "4px" }}>{v.channel}</div>
-                </div>
-              </div>
-            </FadeIn>
-          ))}
+              </FadeIn>
+            );
+          })}
         </div>
       </section>
 
